@@ -1,4 +1,5 @@
 package com.driver.controllers;
+import com.driver.model.User;
 import com.driver.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,13 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity<User> updatePassword(@RequestParam Integer userId, @RequestParam String password){
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        try{
+            User updatedUser = userService.updatePassword(userId, password);
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/delete")
