@@ -71,5 +71,7 @@ public class ReservationServiceImpl implements ReservationService {
         Payment newPayment = new Payment();
         Reservation reservation = new Reservation();
 
+        return reservation;
+
     }
 }
