@@ -48,7 +48,7 @@ public class ReservationServiceImpl implements ReservationService {
         Spot reservedSpot = null;
 
         for(Spot spot : spotList){
-            if(spot.isOccupied() == false){
+            if(spot.getOccupied() == false){
                 if(spot.getSpotType().equals(SpotType.TWO_WHEELER)){
                     if(numberOfWheels <= 2){
                         if(minprice > spot.getPricePerHour()){
