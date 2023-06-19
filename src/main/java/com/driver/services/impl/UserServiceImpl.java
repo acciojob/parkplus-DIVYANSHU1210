@@ -15,26 +15,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository4;
     @Override
-    public void deleteUser(Integer userId) throws Exception {
-        Optional<User> userOptional = userRepository4.findById(userId);
-
-        if(!userOptional.isPresent()){
-            throw new Exception("User not found");
-        }
-
-        User user = userOptional.get();
-        userRepository4.delete(user);
+    public void deleteUser(Integer userId){
+        userRepository4.deleteById(userId);
     }
 
     @Override
-    public User updatePassword(Integer userId, String password) throws Exception {
-        Optional<User> userOptional = userRepository4.findById(userId);
-
-        if(!userOptional.isPresent()){
-            throw new Exception("User not found");
-        }
-
-        User user = userOptional.get();
+    public User updatePassword(Integer userId, String password) {
+        User user = userRepository4.findById(userId).get();
         user.setPassword(password);
         userRepository4.save(user);
         return user;
@@ -42,7 +29,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(String name, String phoneNumber, String password) {
-        User user = new User(name, phoneNumber, password);
+        User user = new User();
+        user.setName(name);
+        user.setPhoneNumber(phoneNumber);
+        user.setPassword(password);
+
         userRepository4.save(user);
     }
 }

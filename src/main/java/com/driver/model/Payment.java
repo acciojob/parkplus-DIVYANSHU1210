@@ -3,7 +3,8 @@ package com.driver.model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-
+@Table(name = "payments")
+@Entity
 public class Payment {
     @Id
     private int id;
@@ -31,14 +32,12 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
+    public Payment(int id, Boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
         this.id = id;
         this.paymentCompleted = paymentCompleted;
         this.paymentMode = paymentMode;
         this.reservation = reservation;
     }
-
-
 
     public int getId() {
         return id;

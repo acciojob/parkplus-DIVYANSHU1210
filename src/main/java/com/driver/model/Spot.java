@@ -3,7 +3,8 @@ package com.driver.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Table(name = "Spots")
+@Entity
 public class Spot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,14 +17,8 @@ public class Spot {
 
     private boolean Occupied;
 
-//    private ParkingLot parkingLot;
-
-    private List<Reservation> reservationList = new ArrayList<>();
-
-
-
     @OneToMany(mappedBy = "spot", cascade = CascadeType.ALL)
-    private Reservation reservation;
+    private List<Reservation> reservationList = new ArrayList<>();
 
     @ManyToOne
     private ParkingLot parkingLot;
@@ -41,10 +36,12 @@ public class Spot {
     public Spot() {
     }
 
-    public Spot(SpotType spotType, int pricePerHour, ParkingLot parkingLot) {
+    public Spot(int id, SpotType spotType, int pricePerHour, boolean occupied, List<Reservation> reservationList,  ParkingLot parkingLot) {
+        this.id = id;
         this.spotType = spotType;
         this.pricePerHour = pricePerHour;
-        Occupied = false;
+        this.Occupied = occupied;
+        this.reservationList = reservationList;
         this.parkingLot = parkingLot;
     }
 

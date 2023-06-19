@@ -1,9 +1,10 @@
 package com.driver.model;
 
-import org.apache.tomcat.jni.User;
+
 
 import javax.persistence.*;
-
+@Table(name = "reservation")
+@Entity
 public class Reservation {
 
     @Id
@@ -29,28 +30,16 @@ public class Reservation {
     @JoinColumn
     private Spot spot;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public Reservation() {
     }
 
 
-    public Reservation(int id, int numberOfHours, User user, Payment payment) {
+    public Reservation(int id, int numberOfHours, Payment payment, User user, Spot spot) {
         this.id = id;
         this.numberOfHours = numberOfHours;
-        this.user = user;
         this.payment = payment;
+        this.user = user;
+        this.spot = spot;
     }
 
     public int getId() {
@@ -69,6 +58,14 @@ public class Reservation {
         this.numberOfHours = numberOfHours;
     }
 
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
     public User getUser() {
         return user;
     }
@@ -77,11 +74,13 @@ public class Reservation {
         this.user = user;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public Spot getSpot() {
+        return spot;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setSpot(Spot spot) {
+        this.spot = spot;
     }
+
+
 }
