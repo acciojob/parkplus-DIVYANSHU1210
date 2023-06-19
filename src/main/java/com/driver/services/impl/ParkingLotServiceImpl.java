@@ -78,7 +78,15 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
 
     @Override
-    public Spot updateSpot(int parkingLotId, int spotId, int pricePerHour) {
+    public Spot updateSpot(int parkingLotId, int spotId, int pricePerHour) throws Exception{
+        Optional<ParkingLot> pOP = parkingLotRepository1.findById(parkingLotId);
+        if(!pOP.isPresent()){
+            throw new Exception("PARKINGLOT NOT FOUND");
+        }
+        Optional<Spot> sOP = spotRepository1.findById(spotId);
+        if(!sOP.isPresent()){
+            throw new Exception("Spot not found");
+        }
         ParkingLot parkingLot = parkingLotRepository1.findById(parkingLotId).get();
 
         Spot spot=spotRepository1.findById(spotId).get();
