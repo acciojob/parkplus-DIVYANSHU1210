@@ -55,9 +55,6 @@ public class PaymentServiceImpl implements PaymentService {
 //
 //
 ////        payment = paymentRepository2.save(payment);       //to get payment id // not required because we used generationtype.auto and it gives the id automaticly.
-//
-//
-//
 //    }
 
 
