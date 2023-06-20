@@ -62,7 +62,7 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment pay(Integer reservationId, int amountSent, String mode) throws Exception {
         Reservation reservation=reservationRepository2.findById(reservationId).get();
         Spot spot= reservation.getSpot();
-        int bill= reservation.getNumberOfHours()* spot.getPricePerHour();
+        int bill = reservation.getNumberOfHours() * spot.getPricePerHour();
 
         Payment payment=new Payment();
         payment.setReservation(reservation);
